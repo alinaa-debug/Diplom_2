@@ -9,7 +9,10 @@ def new_user():
     return user
 
 
-@pytest.fixture 
-def access_token(new_user): 
-    response = login_user(new_user) 
-    return response.json().get("accessToken").replace("Bearer ", "")
+@pytest.fixture
+def access_token(new_user):
+    response = login_user(new_user)
+    token = response.json().get("accessToken")
+    if token and token.startswith("Bearer "):
+        token = token.replace("Bearer ", "")
+    return token

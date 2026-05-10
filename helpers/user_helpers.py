@@ -7,15 +7,11 @@ def login_user(data):
     return post("auth/login", data=data)
 
 def create_order(data, token=None):
-    headers = {}
-    if token:
-        headers["Authorization"] = f"Bearer {token}"
+    headers = {"Authorization" : f"Bearer {token}"} if token else None 
     return post("orders", data=data, headers=headers)
 
 def get_user(token):
-    headers = {"Authorization": f"Bearer {token}"}
-    return get("auth/user", headers=headers)
+    return get("auth/user", {"Authorization" : f"Bearer {token}"})
 
 def update_user(token, data):
-    headers = {"Authorization": f"Bearer {token}"}
-    return patch("auth/user", data=data, headers=headers)
+    return patch("auth/user", data=data, headers={"Authorization" : f"Bearer {token}"})
