@@ -1,12 +1,11 @@
 from helpers.user_helpers import create_user, login_user
 from data.data import generate_user, INVALID_USER
 
-
 def test_user_login():
     user = generate_user()
     create_user(user)
     res = login_user(user)
-    
+
     assert res.status_code == 200
 
     assert res.json()["success"] is True

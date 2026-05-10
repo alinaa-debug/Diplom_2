@@ -1,5 +1,4 @@
 import requests
-
 BASE_URL = "https://stellarburgers.education-services.ru/api"
 
 def post(endpoint, data=None, headers=None):

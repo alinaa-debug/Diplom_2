@@ -1,7 +1,6 @@
 from helpers.user_helpers import create_order
 from data.data import VALID_INGREDIENTS, EMPTY_INGREDIENTS, INVALID_INGREDIENTS
 
-
 def test_order_with_auth(access_token):
     res = create_order(VALID_INGREDIENTS, access_token)
 

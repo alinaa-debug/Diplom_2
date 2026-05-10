@@ -12,6 +12,7 @@ EXISTING_USER = {
     "password": "123456",
     "name": "test"}
 
+
 INVALID_USER = {
     "email": "",
     "password": "123456",

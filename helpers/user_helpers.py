@@ -1,5 +1,4 @@
 from helpers.api_requests import post, get, patch
-
 def create_user(data):
     return post("auth/register", data=data)
 
