@@ -1,4 +1,5 @@
-from helpers.api_requests import post, get, patch
+from helpers.api_requests import post, get, patch, delete
+
 def create_user(data):
     return post("auth/register", data=data)
 
@@ -14,3 +15,8 @@ def get_user(token):
 
 def update_user(token, data):
     return patch("auth/user", data=data, headers={"Authorization" : f"Bearer {token}"})
+
+def delete_user(token):
+    return delete(
+        "auth/delete",
+         headers= {"Authorization" : f"Bearer {token}"})

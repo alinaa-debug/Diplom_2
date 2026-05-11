@@ -1,12 +1,14 @@
 import pytest
-from helpers.user_helpers import create_user, login_user
+from helpers.user_helpers import create_user, login_user,delete_user
 from data.data import generate_user
 @pytest.fixture
 def new_user():
     user = generate_user()
-    create_user(user)
-    return user
-
+    response = create_user(user)
+    token = response.json().get("accessToken")
+    yield user, token
+    if token:
+        delete_user(token)
 
 @pytest.fixture
 def access_token(new_user):

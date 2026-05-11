@@ -1,6 +1,7 @@
 from helpers.user_helpers import create_user
 from data.data import generate_user, EXISTING_USER, INVALID_USER
 
+
 def test_user_creation():
     user = generate_user()
     res = create_user(user)

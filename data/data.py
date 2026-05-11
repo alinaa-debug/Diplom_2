@@ -1,5 +1,7 @@
 import random
 
+BASE_URL = "https://stellarburgers.education-services.ru/api"
+
 def generate_user():
     x = random.randint(1000, 9999)
     return {

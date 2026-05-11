@@ -1,6 +1,7 @@
 from helpers.user_helpers import create_user, login_user
 from data.data import generate_user, INVALID_USER
 
+
 def test_user_login():
     user = generate_user()
     create_user(user)
