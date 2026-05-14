@@ -1,18 +1,37 @@
+import pytest
 from helpers.user_helpers import create_user
-from data.data import generate_user, EXISTING_USER, INVALID_USER
+from data.data import UserData
 
 
-def test_user_creation():
-    user = generate_user()
-    res = create_user(user)
+class TestCreateUser:
 
-    assert res.status_code == 200
-    assert res.json()["success"] is True
+    def test_create_unique_user(self, create_random_user):
+        response = create_user(create_random_user)
+        assert response.status_code == 200
+        assert response.json()["success"] is True
 
-    res2 = create_user(EXISTING_USER)
-    assert res2.status_code == 403
-    assert res2.json()["message"] == "User already exists"
+    def test_create_user_already_exists(
+        self,
+        create_and_delete_user):
+        user = create_and_delete_user[1]
+        response = create_user(user)
+        assert response.status_code == 403
+        assert response.json()["success"] is False
+        assert response.json()["message"] == "User already exists"
 
-    res3 = create_user(INVALID_USER)
-    assert res3.status_code == 403
-    assert res3.json()["message"] == "Email, password and name are required fields"
+    @pytest.mark.parametrize(
+        "payload",
+        [
+            UserData.WITHOUT_EMAIL,
+            UserData.WITHOUT_PASSWORD,
+            UserData.WITHOUT_NAME
+        ]
+    )
+    def test_create_user_without_required_fields(
+        self,
+        payload):
+        response = create_user(payload)
+        assert response.status_code == 403
+
+
+

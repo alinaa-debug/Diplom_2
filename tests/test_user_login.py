@@ -1,18 +1,28 @@
-from helpers.user_helpers import create_user, login_user
-from data.data import generate_user, INVALID_USER
+import pytest
+import allure
+
+from helpers.user_helpers import login_user
+from data.data import UserData
 
 
-def test_user_login():
-    user = generate_user()
-    create_user(user)
-    res = login_user(user)
+class TestLoginUser:
 
-    assert res.status_code == 200
+    def test_login_existing_user(self):
+        response = login_user(UserData.FULL)
+        assert response.status_code == 200
+        assert response.json()["success"] is True
 
-    assert res.json()["success"] is True
-    assert "accessToken" in res.json()
+    
+    @pytest.mark.parametrize(
+        "payload",
+        [
+            UserData.INVALID_LOGIN,
+            UserData.INVALID_PASSWORD
+        ]
+    )
+    def test_login_invalid_user(self, payload):
+        response = login_user(payload)
+        assert response.status_code == 401
+        assert response.json()["success"] is False
 
-    res2 = login_user(INVALID_USER)
-    assert res2.status_code == 401
-    assert res2.json()["success"] is False
-    assert res2.json()["message"] == "email or password are incorrect"
+

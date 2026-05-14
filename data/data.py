@@ -2,30 +2,39 @@ import random
 
 BASE_URL = "https://stellarburgers.education-services.ru/api"
 
-def generate_user():
-    x = random.randint(1000, 9999)
-    return {
-        "email": f"user{x}@test.com",
-        "password": "123456",
-        "name": f"user{x}"  }
+class UserData:
 
-EXISTING_USER = {
-    "email": "test@test.com",
-    "password": "123456",
-    "name": "test"}
+    WITHOUT_EMAIL = {"password": "sfsv dfs",
+                     "name": "ad"}
+    
+    WITHOUT_PASSWORD = {"email": "alina@gmail.com",
+                     "name": "ad"}
+    
+    WITHOUT_NAME = {"email": "alina@gmail.com",
+                 "password": "sfsv dfs"}
+    
+    FULL  = {"email": "alina@gmail.com",
+                 "password": "sfsv dfs",
+                 "name": "ad"}
+    
+    INVALID_LOGIN = {"email":"a@gmail.com",
+                 "password": "1234567",
+                 "name": "ad"}
+    
+    INVALID_PASSWORD = {"email":"alina@gmail.com",
+                 "password": "1234567",
+                 "name": "ad"}
 
+class Ingridients:
 
-INVALID_USER = {
-    "email": "",
-    "password": "123456",
-    "name": ""}
+    VALID_INGREDIENTS = '61c0c5a71d1f82001bdaaa6d'
 
-VALID_INGREDIENTS = {
-    "ingredients": [
-        "609646e4dc916e00276b2870"]}
+    INVALID_INGREDIENTS = [
+        "1234567",
+        "0110000"    
+    ]
 
-EMPTY_INGREDIENTS = {
-    "ingredients": []}
-
-INVALID_INGREDIENTS = {
-    "ingredients": ["12345"]}
+class Burger:
+    burger = {
+        "ingredients": [Ingridients.VALID_INGREDIENTS]    
+    }
