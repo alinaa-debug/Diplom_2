@@ -1,0 +1,1 @@
+Полученный токен: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ZjliZjM3OTg0MjcwMDAxYmU4ZjdkMyIsImlhdCI6MTc3Nzk3NTA5NiwiZXhwIjoxNzc3OTc2Mjk2fQ.q-gl8girpnUwqZPdF-9PGGvsgO0YKw95dnkd0N1CTfE
